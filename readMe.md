@@ -20,6 +20,10 @@ python -m venv .venv
 
 .venv\Scripts\activate
 
+### bash
+
+source .venv/Scripts/activate
+
 ### Windows PowerShell
 
 .\.venv\Scripts\Activate.ps1
@@ -77,6 +81,10 @@ py_auditoria
 Na raiz do projeto e com o .venv ativado:
 
 uvicorn app.main:app --reload
+
+### ou :
+uv run uvicorn app.main:app --reload
+
 
 
 ## 9. ACESSAR O SWAGGER
