@@ -1,5 +1,5 @@
 from datetime import datetime
-from sqlalchemy import Column, BigInteger, String, DateTime, func, int
+from sqlalchemy import Column, BigInteger, String, DateTime, func, Integer, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.database import Base
 
@@ -36,7 +36,7 @@ class RegistroMovimentacao(Base):
 
     produto = relationship("Produto")
 
-    quantidade = Column(int, nullable=True)
+    quantidade = Column(Integer, nullable=True)
 
     data_movimentacao: Mapped[datetime | None] = mapped_column(
         "dt_movimentacao",
@@ -47,4 +47,4 @@ class RegistroMovimentacao(Base):
 
     dsc_responsavel = Column(String(255),nullable=True)
 
-    tip_movimentacao = Column(int,nullable=True)
+    tip_movimentacao = Column(Integer,nullable=True)
