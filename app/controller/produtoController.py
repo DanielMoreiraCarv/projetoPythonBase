@@ -9,7 +9,7 @@ from app.repository.produtoRepository import ProdutoRepository
 from app.service.produtoService import ProdutoService
 
 
-router = APIRouter(
+router_produto = APIRouter(
     prefix="/produto",
     tags=["Produto"]
 )
@@ -24,7 +24,7 @@ def get_service(
     return ProdutoService(repository)
 
 
-@router.get(
+@router_produto.get(
     "/",
     response_model=list[ProdutoResponse]
 )
@@ -35,7 +35,7 @@ def listar_produtos(
     return service.listar()
 
 
-@router.get(
+@router_produto.get(
     "/{produto_id}",
     response_model=ProdutoResponse
 )
@@ -56,7 +56,7 @@ def buscar_produto(
         )
 
 
-@router.post(
+@router_produto.post(
     "/",
     response_model=ProdutoResponse,
     status_code=201
@@ -68,7 +68,7 @@ def criar_produto(
 
     return service.criar(produto)
 
-@router.put("/{produto_id}", response_model=ProdutoResponse)
+@router_produto.put("/{produto_id}", response_model=ProdutoResponse)
 def atualizar_produto(
     produto_id: int,
     produto: ProdutoUpdateRequest,
@@ -83,7 +83,7 @@ def atualizar_produto(
         )
 
 
-@router.delete("/{produto_id}", response_model=ProdutoResponse)
+@router_produto.delete("/{produto_id}", response_model=ProdutoResponse)
 def deletar_produto(
     produto_id: int,
     service: ProdutoService = Depends(get_service)
