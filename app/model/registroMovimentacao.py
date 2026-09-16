@@ -10,7 +10,7 @@ class RegistroMovimentacao(Base):
 
     id_estoque_chegada = Column(
         BigInteger,
-        ForeignKey("estoque.id")
+        ForeignKey("py_estoque.id")
     )
 
     estoque_chegada = relationship(
@@ -20,7 +20,7 @@ class RegistroMovimentacao(Base):
 
     id_estoque_saida = Column(
         BigInteger,
-        ForeignKey("estoque.id")
+        ForeignKey("py_estoque.id")
     )
 
     estoque_saida = relationship(
@@ -31,7 +31,7 @@ class RegistroMovimentacao(Base):
 
     id_produto = Column(
         BigInteger,
-        ForeignKey("produto.id")
+        ForeignKey("py_produto.id")
     )
 
     produto = relationship("Produto")

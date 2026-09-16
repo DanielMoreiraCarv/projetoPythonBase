@@ -10,7 +10,7 @@ class AuxProdutoEstoqueRepository:
         return self.db.query(AuxProdutoEstoque).all()
 
     def find_by_estoque_id(self,estoque_id: int):
-        return (self.db.query(AuxProdutoEstoque).filter(AuxProdutoEstoque.estoque_id==estoque_id).all())
+        return (self.db.query(AuxProdutoEstoque).filter(AuxProdutoEstoque.id_estoque==estoque_id).all())
 
     def find_by_produto_and_estoque(self, estoque_id: int, produto_id: int):
         return (self.db.query(AuxProdutoEstoque).filter(AuxProdutoEstoque.id_produto == produto_id,AuxProdutoEstoque.id_estoque == estoque_id).all())

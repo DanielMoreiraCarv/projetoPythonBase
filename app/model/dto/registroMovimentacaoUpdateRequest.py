@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from datetime import datetime
+from typing import Literal
 
 class RegistroMovimentacaoUpdateRequest(BaseModel):
     id_estoque_chegada: int | None = None

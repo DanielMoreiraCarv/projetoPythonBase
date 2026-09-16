@@ -7,6 +7,7 @@ from app.model.dto.produtoResponse import ProdutoResponse
 from app.model.dto.produtoUpdateRequest import ProdutoUpdateRequest
 from app.repository.produtoRepository import ProdutoRepository
 from app.service.produtoService import ProdutoService
+from app.repository.auditoriaRepository import AuditoriaRepository
 
 
 router_produto = APIRouter(
@@ -18,10 +19,10 @@ router_produto = APIRouter(
 def get_service(
     db: Session = Depends(get_db)
 ):
-
+    auditoria_repository = AuditoriaRepository(db)
     repository = ProdutoRepository(db)
 
-    return ProdutoService(repository)
+    return ProdutoService(repository, auditoria_repository)
 
 
 @router_produto.get(

@@ -7,15 +7,17 @@ from app.model.dto.estoqueUpdateRequest import EstoqueUpdateRequest
 from app.model.dto.estoqueResponse import EstoqueResponse
 from app.repository.estoqueRepository import EstoqueRepository
 from app.service.estoqueService import EstoqueService
+from app.repository.auditoriaRepository import AuditoriaRepository
 
 router_estoque = APIRouter(prefix="/estoque",tags=["Estoque"])
 
 def get_service(
     db:Session = Depends(get_db)
 ):
+    auditoria_repository = AuditoriaRepository(db)
     repository = EstoqueRepository(db)
 
-    return EstoqueService(repository)
+    return EstoqueService(repository, auditoria_repository)
 
 @router_estoque.get("/",response_model=list[EstoqueResponse])
 def listar_estoques(service: EstoqueService = Depends(get_service)):
@@ -33,10 +35,10 @@ def buscar_estoque(estoque_id: int,service: EstoqueService = Depends(get_service
 def criar_estoque(estoque: EstoqueCreateRequest, service: EstoqueService = Depends(get_service)):
     return service.criar(estoque)
 
-@router_estoque.put("/{estoque_id}",response_model=EstoqueResponse)
+@router_estoque.put("/{estoque_id}",response_model=EstoqueResponse|None)
 def atualizar_estoque(estoque_id: int, estoque: EstoqueUpdateRequest, service: EstoqueService = Depends(get_service)):
     try:
-        service.atualizar(estoque_id,estoque)
+        return service.atualizar(estoque_id,estoque)
     except ValueError as error:
         raise HTTPException(status_code=404,detail=str(error))
 
