@@ -85,6 +85,15 @@ uvicorn app.main:app --reload
 ### ou :
 uv run uvicorn app.main:app --reload
 
+### via docker:
+docker start gestao-patrimonio-api
+
+### acompanhar logs por docker:
+docker logs -f gestao-patrimonio-api
+
+
+![alt text](image.png)
+
 
 
 ## 9. ACESSAR O SWAGGER

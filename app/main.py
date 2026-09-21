@@ -14,4 +14,4 @@ async def root():
 app.include_router(router_produto, tags=["Produto"])
 app.include_router(router_estoque,tags=["Estoque"])
 app.include_router(router_aux,tags=["Aux"])
-app.include_router(router_registro,tags=["Registro"])
+app.include_router(router_registro,tags=["Registro de Movimentação"])

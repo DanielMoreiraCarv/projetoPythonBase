@@ -12,7 +12,7 @@ from app.service.produtoService import ProdutoService
 from app.repository.estoqueRepository import EstoqueRepository
 from app.service.estoqueService import EstoqueService
 
-router_registro = APIRouter(prefix="/registro",tags=["Registro"])
+router_registro = APIRouter(prefix="/registro",tags=["Registro de Movimentação"])
 
 def get_service(db: Session = Depends(get_db)):
     repositoy_prod = ProdutoRepository(db)
